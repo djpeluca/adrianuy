@@ -1,112 +1,324 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Adrian Barrera is a developer and Communications Specialist specializing in agile methodologies, Salesforce, frontend development, and AWS. Discover projects, read the blog, and get in touch.">
+<meta name="keywords" content="Developer, Communications Specialist, Agile, Salesforce, Frontend Development, AWS, Technology, Programming, Software Development, Cloud Computing, Web Development, Media Studies, Communication">
+<meta name="author" content="Adrian Barrera">
+<meta name="robots" content="index, follow">
+<!-- <meta name="google-site-verification" content="verification_token">  -->
 
+<!-- Favicon -->
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
-  
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://adrian.uy/">
+<meta property="og:title" content="Adrian Barrera - Developer & Communications Specialist">
+<meta property="og:description" content="Adrian Barrera is a developer and Communications Specialist specializing in agile methodologies, Salesforce, frontend, backend development, Cybersecurity and AWS. Discover projects, read the blog, and get in touch.">
+<meta property="og:image" content="http://adrian.uy/img/adrian.jpg">
+<meta property="og:image:alt" content="Adrian Barrera">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://adrian.uy/">
+<meta property="twitter:title" content="Adrian Barrera - Developer & Communications Specialist">
+<meta property="twitter:description" content="Adrian Barrera is a developer and Communications Specialist specializing in agile methodologies, Salesforce, frontend, backend development, Cybersecurity and AWS. Discover projects, read the blog, and get in touch.">
+<meta property="twitter:image" content="http://adrian.uy/img/adrian.jpg">
+<meta property="twitter:image:alt" content="Adrian Barrera">
+
 <style>
-body, html {
-  height: 100%;
-  margin: 0;
-  font: 400 15px/1.8 "Lato", sans-serif;
-  color: #777;
+/* Base */
+html, body {
+    margin: 0;
+    height: 100%;
+    font-family: "Courier New", Courier, monospace;
+    overflow: hidden;
+    transition: background 0.5s, color 0.5s;
 }
 
-.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6 {
-  position: relative;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+/* Dark / Light backgrounds */
+body.dark { background: #1e1e1e; color: #33ff33; }
+body.light { background: #f5f5f5; color: #000; }
 
-}
-.bgimg-1 {
-  background-image: url("adrian_uy_karate_kid.webp");
-  min-height: 100%;
-}
-  
-  .bgimg-2 {
-  background-image: url("adrian_uy_morning_shore.webp");
-  min-height: 100%;
-}
-  
-  .bgimg-3 {
-  background-image: url("adrian_uy_beach_butterfly.webp");
-  min-height: 100%;
-}
-  
-  .bgimg-4 {
-  background-image: url("adrian_uy_sunset_1.webp");
-  min-height: 100%;
-}
-  
-  .bgimg-5 {
-  background-image: url("adrian_uy_sunset_shore.webp");
-  min-height: 100%;
+/* Container */
+#container { position: relative; height: 100vh; width: 100%; overflow: hidden; }
+
+/* Consoles */
+.console {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 900px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.5s, background-color 0.5s, color 0.5s, box-shadow 0.5s;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
 }
 
-.bgimg-6 {
-  background-image: url("adrian_uy_wave_sunset.webp");
-  min-height: 100%;
+/* Dark console */
+body.dark .console {
+    background-color: rgba(0,0,0,0.85);
+    color: #33ff33;
+    box-shadow: 0 0 40px #00ff0044;
 }
 
-
-
-.caption {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  text-align: center;
-  color: #000;
+/* Light console */
+body.light .console {
+    background-color: rgba(255,255,255,0.95);
+    color: #000;
+    box-shadow: 0 0 20px #00000033;
 }
 
-.caption span.border {
-  background-color: #111;
-  color: #fff;
-  padding: 18px;
-  font-size: 25px;
-  letter-spacing: 10px;
+/* Active console */
+.console.active { opacity: 1; }
+
+/* Windows 10-like header */
+.win-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+    padding: 0 0.8rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    user-select: none;
+    font-weight: normal;
+}
+.win-header.dark { background: #2d2d30; color: #fff; }
+.win-header.light { background: #e0e0e0; color: #000; }
+
+/* Header title */
+.win-title { font-weight: bold; font-size: 0.9rem; }
+
+/* Windows 10 buttons */
+.win-buttons {
+    display: flex;
+    gap: 0.2rem;
+}
+.win-buttons button {
+    border: none;
+    background: transparent;
+    color: inherit;
+    font-size: 0.9rem;
+    width: 28px;
+    height: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    transition: background 0.2s;
+}
+.win-buttons button:hover {
+    background: rgba(255,255,255,0.15);
+}
+body.light .win-buttons button:hover {
+    background: rgba(0,0,0,0.1);
 }
 
-h3 {
-  letter-spacing: 5px;
-  text-transform: uppercase;
-  font: 20px "Lato", sans-serif;
-  color: #111;
+/* Content */
+.console-content { padding: 1.5rem; }
+h2 { margin-bottom: 1rem; }
+p, li { line-height: 1.6; margin: 0.5rem 0; }
+a { text-decoration: underline; }
+a:hover { text-decoration: none; }
+
+/* Photo */
+.about-photo {
+    float: right;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-left: 20px;
+    object-fit: cover;
+    border: 2px solid currentColor;
 }
 
-/* Turn off parallax scrolling for tablets and phones */
-/* @media only screen and (max-device-width: 1024px) {  */
-/*  .bgimg-1, .bgimg-2, .bgimg-3 {  */
-/*    background-attachment: scroll;  */
-/*  }  */
-/*} */
+/* Projects grid */
+.projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+.project {
+    padding: 1rem;
+    border: 1px solid currentColor33;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+.project:hover { box-shadow: 0 0 20px currentColor44; }
+
+/* Cursor */
+.cursor {
+    display: inline-block;
+    width: 0.6ch;
+    background-color: currentColor;
+    animation: blink 1s steps(2, start) infinite;
+    vertical-align: bottom;
+}
+@keyframes blink { 0%,50% { opacity: 1; } 51%,100% { opacity: 0; } }
+
+/* Toggle switch for dark/light mode */
+.switch {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    z-index: 10;
+}
+.switch input { display: none; }
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px; width: 26px;
+    left: 4px; bottom: 4px;
+    background-color: #fff;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+input:checked + .slider { background-color: #999; }
+input:checked + .slider:before { transform: translateX(26px); }
+
 </style>
 </head>
-<body>
+<body class="dark">
 
-<div class="bgimg-1">
-  <div class="caption">
-  <span class="border">Adri&aacute;n</span>
-  </div>
+<label class="switch">
+    <input type="checkbox" id="mode-toggle">
+    <span class="slider"></span>
+</label>
+
+<div id="container">
+    <!-- About Me -->
+    <div class="console active">
+        <div class="win-header dark">
+            <span class="win-title">About Me</span>
+            <div class="win-buttons">
+                <button title="Minimize">_</button>
+                <button title="Maximize">☐</button>
+                <button title="Close">X</button>
+            </div>
+        </div>
+        <div class="console-content">
+            <img src="img/adrian.jpg" alt="Adrian Barrera" class="about-photo">
+            <p>Hi, I'm <strong>Adrián Barrera</strong>, a <strong>Developer & Communications Specialist</strong> passionate about creating meaningful digital and media experiences.</p>
+            <p>With a background in <strong>Communication Science</strong> and <strong>Computer Engineering</strong>, I blend technical know-how with creative storytelling.</p>
+            <p>I've worked on diverse initiatives, from audiovisual productions to technology-driven projects, developing a unique perspective on how technology and media intersect.</p>
+        </div>
+    </div>
+
+    <!-- Projects -->
+    <div class="console">
+        <div class="win-header dark">
+            <span class="win-title">Featured Work</span>
+            <div class="win-buttons">
+                <button title="Minimize">_</button>
+                <button title="Maximize">☐</button>
+                <button title="Close">X</button>
+            </div>
+        </div>
+        <div class="console-content">
+            <div class="projects">
+                <div class="project">
+                    <h3>This Website</h3>
+                    <p>Case study description here.</p>
+                </div>
+                <div class="project">
+                    <h3>Projects of Humanity</h3>
+                    <p>Advertising Technology MVP Product.</p>
+                </div>
+                <div class="project">
+                    <h3>Bluesky Feeds</h3>
+                    <p>Fun experimental project on feeds and interactions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="console">
+        <div class="win-header dark">
+            <span class="win-title">Contact</span>
+            <div class="win-buttons">
+                <button title="Minimize">_</button>
+                <button title="Maximize">☐</button>
+                <button title="Close">X</button>
+            </div>
+        </div>
+        <div class="console-content">
+            <p>Email: <a href="mailto:salesforceadrian@gmail.com">salesforceadrian@gmail.com</a></p>
+            <p>
+                <a href="https://linkedin.com/in/adrian-barrera">LinkedIn</a> |
+                <a href="https://github.com/sfadrianuy">GitHub</a> |
+                <a href="https://twitter.com/sfadrianuy">Twitter</a>
+            </p>
+        </div>
+    </div>
 </div>
 
-<div style="color: #777;background-color:white;text-align:center;padding:50px 80px;text-align: justify;">
-    <h3 style="text-align:center;">Sitio web en Construcci&oacute;n</h3>
-    <p></p>
-</div>
+<script>
+const consoles = document.querySelectorAll('.console');
+let currentIndex = 0;
 
-<div class="bgimg-2">
-  <div class="caption">
-  <span class="border" style="background-color:transparent;font-size:25px;color: #f7f7f7;"></span>
-  </div>
-</div>
+function showConsole(index) {
+    consoles.forEach((c,i) => c.classList.toggle('active', i===index));
+}
+
+// Scroll navigation
+let scrollTimeout;
+window.addEventListener('wheel', e => {
+    if (scrollTimeout) return;
+    if (e.deltaY > 0 && currentIndex < consoles.length-1) currentIndex++;
+    else if (e.deltaY < 0 && currentIndex > 0) currentIndex--;
+    showConsole(currentIndex);
+    scrollTimeout = setTimeout(()=>scrollTimeout=null, 300);
+});
+
+// Arrow keys
+window.addEventListener('keydown', e => {
+    if(e.key=="ArrowDown"||e.key=="ArrowRight"){if(currentIndex<consoles.length-1) currentIndex++;}
+    else if(e.key=="ArrowUp"||e.key=="ArrowLeft"){if(currentIndex>0) currentIndex--;}
+    else{return;}
+    showConsole(currentIndex);
+});
+
+// Mode toggle
+const toggle = document.getElementById('mode-toggle');
+toggle.addEventListener('change', ()=>{
+    if(toggle.checked){
+        document.body.classList.remove('dark');
+        document.body.classList.add('light');
+        document.querySelectorAll('.win-header').forEach(h=>h.classList.replace('dark','light'));
+    } else {
+        document.body.classList.remove('light');
+        document.body.classList.add('dark');
+        document.querySelectorAll('.win-header').forEach(h=>h.classList.replace('light','dark'));
+    }
+});
+
+// Initialize first console
+showConsole(0);
+</script>
 
 </body>
 </html>
